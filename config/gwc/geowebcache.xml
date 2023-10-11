@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gwcConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://geowebcache.org/schema/1.17.0"
+  xsi:schemaLocation="http://geowebcache.org/schema/1.17.0 http://geowebcache.org/schema/1.17.0/geowebcache.xsd">
+  <version>1.8.0</version>
+  <backendTimeout>120</backendTimeout>
+  <serviceInformation>
+    <title>GeoWebCache</title>
+    <description>GeoWebCache is an advanced tile cache for WMS servers. It supports a large variety of protocols and
+      formats, including WMS-C, WMTS, KML, Google Maps and Virtual Earth.</description>
+    <keywords>
+      <string>WFS</string>
+      <string>WMS</string>
+      <string>WMTS</string>
+      <string>GEOWEBCACHE</string>
+    </keywords>
+    <serviceProvider>
+      <providerName>John Smith inc.</providerName>
+      <providerSite>http://www.example.com/</providerSite>
+      <serviceContact>
+        <individualName>John Smith</individualName>
+        <positionName>Geospatial Expert</positionName>
+        <addressType>Work</addressType>
+        <addressStreet>1 Bumpy St.</addressStreet>
+        <addressCity>Hobart</addressCity>
+        <addressAdministrativeArea>TAS</addressAdministrativeArea>
+        <addressPostalCode>7005</addressPostalCode>
+        <addressCountry>Australia</addressCountry>
+        <phoneNumber>+61 3 0000 0000</phoneNumber>
+        <faxNumber>+61 3 0000 0001</faxNumber>
+        <addressEmail>john.smith@example.com</addressEmail>
+      </serviceContact>
+    </serviceProvider>
+    <fees>NONE</fees>
+    <accessConstraints>NONE</accessConstraints>
+  </serviceInformation>
+
+
+  <layers>
+
+    <wmsLayer>
+      <!-- 
+      <blobStoreId>myS3Cache</blobStoreId>
+      -->
+      <name>geo:location</name>
+      <mimeFormats>
+        <string>image/png</string>
+      </mimeFormats>
+      <gridSubsets>
+        <gridSubset>
+          <gridSetName>EPSG:4326</gridSetName>
+          <extent>
+            <coords>
+              <double>7.431949307389308</double>
+              <double>46.952712735429266</double>
+              <double>7.436332524528759</double>
+              <double>46.95808095831598</double>
+            </coords>
+          </extent>
+        </gridSubset>
+      </gridSubsets>
+      <parameterFilters>
+        <stringParameterFilter>
+          <key>STYLES</key>
+          <defaultValue>point</defaultValue>
+          <values>
+            <string>point</string>
+          </values>
+        </stringParameterFilter>
+        <regexParameterFilter>
+          <key>CQL_FILTER</key>
+          <regex>.*</regex>
+          <defaultValue>status IS NOT NULL</defaultValue>
+        </regexParameterFilter>
+      </parameterFilters>
+      <wmsUrl>
+        <string>http://geoserver-tomcat:8080/geo/wms</string>
+      </wmsUrl>
+      <httpRequestMode>FormPost</httpRequestMode>
+    </wmsLayer>
+
+  </layers>
+
+</gwcConfiguration>
