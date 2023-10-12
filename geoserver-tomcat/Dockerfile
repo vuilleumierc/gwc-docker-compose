@@ -1,7 +1,7 @@
 FROM tomcat:9-jre11 as builder
 
-ENV GEOSERVER_VERSION 2.20
-ENV GEOSERVER_MINOR_VERSION 7
+ENV GEOSERVER_VERSION 2.23
+ENV GEOSERVER_MINOR_VERSION 1
 
 RUN apt-get update \
     && apt-get install -y unzip\

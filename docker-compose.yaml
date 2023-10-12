@@ -5,6 +5,7 @@ services:
 
   geoserver-tomcat:
     build: ./geoserver-tomcat
+    container_name: geoserver
     ports:
       - 8082:8080
 
@@ -15,6 +16,7 @@ services:
 
   gwc-tomcat:
     build: ./gwc-tomcat
+    container_name: gwc
     ports:
       - 8083:8080
     environment:
@@ -22,7 +24,7 @@ services:
       - GWC_USER=admin
       - GWC_PASS=geoserver
     volumes:
-      - ./config/gwc/geowebcache-core-context.xml:/usr/local/tomcat/webapps/gwc/WEB-INF/geowebcache-core-context.xml
+      # - ./config/gwc/geowebcache-core-context.xml:/usr/local/tomcat/webapps/gwc/WEB-INF/geowebcache-core-context.xml
       - ./config/gwc/geowebcache.xml:/usr/local/tomcat/temp/geowebcache/geowebcache.xml
 
   postgres:

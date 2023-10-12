@@ -1,6 +1,6 @@
 FROM tomcat:8
 
-ARG GWC_VERSION=1.17.1
+ARG GWC_VERSION=1.23.1
 
 RUN apt-get update \
     && apt-get install -y unzip\
