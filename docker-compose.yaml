@@ -5,16 +5,22 @@ services:
 
   geoserver-tomcat:
     build: ./geoserver-tomcat
+    # user: $UID:$GID
     ports:
       - 8082:8080
+    volumes:
+      - ./config/web-inf/web.xml:/usr/local/tomcat/webapps/ROOT/WEB-INF/web.xml:rw
+      - ./config/server.xml:/usr/local/tomcat/conf/server.xml:rw
+      - ./logs:/usr/local/tomcat/logs:r
 
-  geoserver-jetty:
-    build: ./geoserver-jetty
-    ports:
-      - 8081:8080
+  # geoserver-jetty:
+  #   build: ./geoserver-jetty
+  #   ports:
+  #     - 8081:8080
 
   gwc-tomcat:
     build: ./gwc-tomcat
+    # user: $UID:$GID
     ports:
       - 8083:8080
     environment:
@@ -22,8 +28,10 @@ services:
       - GWC_USER=admin
       - GWC_PASS=geoserver
     volumes:
-      - ./config/gwc/geowebcache-core-context.xml:/usr/local/tomcat/webapps/gwc/WEB-INF/geowebcache-core-context.xml
+      #- ./config/gwc/geowebcache-core-context.xml:/usr/local/tomcat/webapps/gwc/WEB-INF/geowebcache-core-context.xml
       - ./config/gwc/geowebcache.xml:/usr/local/tomcat/temp/geowebcache/geowebcache.xml
+      - ./config/gwc/web.xml:/usr/local/tomcat/webapps/gwc/WEB-INF/web.xml:rw
+      - ./config/tomcat/web.xml:/usr/local/tomcat/conf/web.xml:rw
 
   postgres:
     image: postgis/postgis:14-3.4-alpine

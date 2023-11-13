@@ -1,10 +1,14 @@
+UID=$(shell id -u)
+GID=$(shell id -g)
+
 .PHONY: run
 
 run:
-	docker-compose up -d postgres geoserver-jetty geoserver-tomcat
+#UID=$(UID) GID=$(GID) docker-compose up -d postgres geoserver-tomcat #geoserver-jetty
+	docker-compose up -d postgres geoserver-tomcat
 	sleep 2
 	GEOSERVER_URL='http://localhost:8082/' ./config/config_geoserver.sh
-	GEOSERVER_URL='http://localhost:8081/geoserver/' ./config/config_geoserver.sh
+#GEOSERVER_URL='http://localhost:8081/geoserver/' ./config/config_geoserver.sh
 	sleep 2
 	docker-compose up -d
 
